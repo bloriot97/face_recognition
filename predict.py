@@ -6,12 +6,6 @@ import cv2
 import os
 from core import exctract_faces
 
-model_dir = './models'
-
-protoPath = os.path.sep.join([model_dir, "deploy.prototxt"])
-modelPath = os.path.sep.join([model_dir, "res10_300x300_ssd_iter_140000.caffemodel"])
-detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
-
 embedder = cv2.dnn.readNetFromTorch("./openface_nn4.small2.v1.t7")
 
 recognizer = pickle.loads(open("./output/recognizer.pickle", "rb").read())
@@ -50,9 +44,7 @@ def live_prediction():
         labeled_frame = label_image(frame)
 
         cv2.imshow('img',labeled_frame)
-        # Display the resulting frame
-        # cv2.imshow('frame', frame)
-        # cv2.imshow('gray', gray)
+
         if cv2.waitKey(20) & 0xFF == ord('q'):
             break
 

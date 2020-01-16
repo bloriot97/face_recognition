@@ -15,13 +15,20 @@ def embed_face(face, embedder):
     return vec
 
 def embed_dataset(dataset_dir):
-    people = os.listdir(dataset_dir)
+    people = [f for f in os.listdir(dataset_dir) if f != '.DS_Store']
     knownNames = []
     knownEmbeddings = []
     for person_name in tqdm(people):
         person_images_dir = os.path.join(dataset_dir, person_name)
-        person_images_path = [os.path.join(person_images_dir, file_name) for file_name in os.listdir(person_images_dir)]
-        person_images = [cv2.imread(imagePath) for imagePath in person_images_path]
+        person_images_path = [
+            os.path.join(person_images_dir, file_name) 
+            for file_name in os.listdir(person_images_dir) 
+            if file_name != '.DS_Store'
+        ]
+        person_images = [
+            cv2.imread(imagePath)
+            for imagePath in person_images_path
+        ]
         for image in person_images:
             faces = exctract_faces(image)
             if len(faces) == 1:
