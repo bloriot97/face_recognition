@@ -51,4 +51,12 @@ def live_prediction():
     cap.release()
     cv2.destroyAllWindows()
 
+def load_and_label(img_path):
+    frame = cv2.imread(img_path)
+    labeled_frame = label_image(frame)
+    cv2.imshow('labeled_frame',labeled_frame)
+    cv2.waitKey(0)
+
 live_prediction()
+
+#load_and_label('./images/trisha_adrian.jpg')
