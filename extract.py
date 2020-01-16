@@ -47,4 +47,4 @@ def gen_embedded_dataset(dataset_dir):
     f.close()
 
 
-gen_embedded_dataset('./dataset')
+gen_embedded_dataset('./perso/dataset')

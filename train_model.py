@@ -1,5 +1,6 @@
 from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 import argparse
 import pickle
 
