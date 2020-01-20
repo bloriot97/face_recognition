@@ -6,7 +6,7 @@ import cv2
 import os
 from core import exctract_faces
 from dataset import test_dir
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -83,12 +83,14 @@ def eval(test_dir):
                     else:
                         pass
                         #print("")
+    accuracy=  accuracy_score(real, pred)
+    print(f"accuracy : {accuracy}")
     conf = confusion_matrix(real, pred, labels=le.classes_) 
     conf_df = pd.DataFrame(data=conf, index=le.classes_, columns=le.classes_)
     ax = sns.heatmap(conf_df, annot=True, fmt="d")
     plt.show()
 
-#live_prediction()
-eval(test_dir)
+live_prediction()
+#eval(test_dir)
 
 #load_and_label('./images/trisha_adrian.jpg')
